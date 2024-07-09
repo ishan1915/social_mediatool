@@ -1,0 +1,111 @@
+{% load static %}
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+
+<title>
+</title>
+<style>
+    
+       
+    </style>
+</head>
+<body>
+<div class="header">
+  
+  <ul>
+  <li><a href="">logo</a></li>
+  <li style="float:right"><a href="{% url 'logout' %}">Logout</a></li>
+  <li style="float:right"><a href="#contact">Contact</a></li>
+  <li style="float:right"><a href="#news">About</a></li>
+  <li style="float:right"><a class="active" href="#home">Home</a></li>
+
+ 
+</ul>
+  
+</div>  
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="{%url 'displayprofile'%}">Profile View</a>
+
+  <a href="{% url 'editprofile' user.id %}">Edit Profile</a>
+  <a href="{% url 'additem' %}">Add Items</a>
+ <a href="{%url 'approved_task'%}">Approved Items</a>
+  <a href="{%url 'rejected_task'%}">Rejected Items</a>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Profile</span>
+
+   {% block content %}
+
+ 
+ <div style="overflow-x: auto;">
+   
+    <h2 style="text-align:center">Approved Task</h2>
+   <table>
+   <tr>
+   <th>Datetime</th>
+   <th>Title</th>
+   <th>Status</th>
+   <th>Edit</th>
+   <th>Delete</th>
+   </tr>
+   {%for item in items%}
+   <tr>
+   <td>{{item.datetime}}</td>
+   <td>{{item.title}}</td>
+   <td>{{item.approved}}</td>
+   <td><a href="{% url 'edititem' item.id %}">Edit Item</a></td>
+   <td><a href="{% url 'deleteitem' item.id %}">Delete Item</a></td>
+   </tr>
+   {%endfor%}
+   </table>
+  
+    
+	
+   
+  
+ </div>
+
+  
+
+{%endblock%}
+  <!--github check--> 
+  
+ <div class="footer">
+ <div class="foot1">
+ <p>footer part1</p>
+ </div>
+ 
+ <div class="foot2">
+  <p>footer part2</p>
+
+ </div>
+ 
+ <div class="foot3">
+  <p>footer part3</p>
+
+ </div>
+
+</div> 
+
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  
+
+}
+</script>
+   
+</body>
+</html>
