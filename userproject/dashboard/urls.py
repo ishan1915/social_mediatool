@@ -7,6 +7,16 @@ urlpatterns = [
     path('signup/',views.signup,name='signup'),
     path('login/',views.login,name='login'),
     path('adminlogin/',views.admin_login,name='adminlogin'),
+    path('admindisplay/',views.admin_display,name='admindisplay'),
+    path('edit_admindetail/<int:user_id>/',views.edit_admindetail,name='edit_admindetail'),
+    path('adminedit_item/<int:item_id>/',views.admin_edititem,name='admin_edititem'),
+    path('adminview_item/<int:item_id>/',views.admin_viewitem,name='admin_viewitem'),
+    path('admin_approved/',views.admin_approved,name='admin_approved'),
+    path('admin_rejected/',views.admin_rejected,name='admin_rejected'),
+
+
+
+    
     path('logout/',views.logout_view,name='logout'),
 
     path('displayprofile/',views.profile_view,name='displayprofile'),

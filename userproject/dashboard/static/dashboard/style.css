@@ -1,13 +1,21 @@
 
-body, html {
-  margin: 0;
-  padding: 0;
-}
+body{
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0; /* Example background color */
+      margin: 0; /* Reset default margin */
+	  padding-top:1px;
+      padding: ; /* Reset default padding */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Ensure full viewport height */
+    }
 
 
 .main {
-  max-width: 900px;
-  margin: 20px auto;
+   max-width: 900px;
+  /*margin: 40px ;*/
+  margin-left:100px;
+  margin-top:40px;
   padding: 20px;
  /* background-color: #f0f0f0;
   /*border: 1px solid #ccc;
@@ -50,6 +58,13 @@ body, html {
   margin-right:20px;
   padding-left:10px;
 }
+
+table th, table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd; /* Example border bottom */
+    }
+
 th{
 	
  background-color: #04AA6D;
@@ -145,22 +160,22 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 }
 
  .pp {
-            max-width: 20px;
+            flex: 0 0 150px; 
+            margin-left: 20px;
+			max-width: 20px;
             max-height: 20px; 
         }
 		
 		
 .footer {
-  position: absolute;
-  display:flex;
-  bottom: 0;
-  width: 100%;
-  background-color: black;
-  color:white;
-  padding: 10px;
-  
-  clear: both;
-}
+	display:flex;
+      background-color: black;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      clear: both; /* Ensure footer clears floated elements */
+      text-align: center; /* Center align footer content */
+    }
 
 .foot1, .foot2, .foot3 {
 	flex:2;
@@ -228,3 +243,17 @@ margin-right:10px;
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+
+ .container {
+      
+      max-width: 100%; /* Ensures table takes full width of container */
+      margin-top: 20px; /* Adjust spacing as needed */
+    }
+	
+	
+	
+	
+	
+	
+ 

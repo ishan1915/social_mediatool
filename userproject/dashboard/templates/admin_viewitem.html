@@ -1,0 +1,34 @@
+<!-- admin_view_item.html -->
+
+{% load static %}
+<html>
+<head>
+<title></title>
+</head>
+<body>
+{%block content%}
+
+   
+
+<h1>Task Details: {{ item.title }}</h1>
+
+<p>DateTime: {{ item.datetime }}</p>
+
+<p>Title: {{ item.title }}</p>
+
+<p>Description: {{ item.description }}</p>
+{% if item.image %}
+
+
+<img src="{{item.image.url }}" alt="Task Image" width="200" height="200">
+{% else %}
+    <p>No image available</p>
+{% endif %}
+
+<p>Approved Status: {{ item.approved }}</p>
+   
+
+{%endblock %}
+
+</body>
+</html>

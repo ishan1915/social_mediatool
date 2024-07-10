@@ -9,7 +9,7 @@ from django.http import HttpResponseForbidden
 from datetime import datetime, timedelta
 from datetime import date, timedelta
 from .models import UserDetail,Item,Task
-from .forms import SignUpForm,UserDetailForm,ItemForm,TaskForm
+from .forms import SignUpForm,UserDetailForm,ItemForm,TaskForm,AdminTaskForm
 
 # Create your views here.
 def signup(request):
@@ -134,7 +134,7 @@ def admin_login(request):
             user = authenticate(username=username, password=password)
             if user is not None and user.is_staff:
                 auth_login(request, user)
-                return redirect('displayprofile')
+                return redirect('admindisplay')
             else:
                 return HttpResponse('Invalid login')
     
@@ -142,3 +142,71 @@ def admin_login(request):
         form = AuthenticationForm()
     
     return render(request, 'admin_login.html', {'form': form})
+
+
+
+def admin_display(request):
+    try:
+        user_detail = UserDetail.objects.get(user=request.user)
+    except UserDetail.DoesNotExist:
+        user_detail = None
+
+    items = Task.objects.filter(approved='Pending')
+
+    return render(request, 'admindisplay.html', {'user_detail': user_detail,'items':items})
+
+
+@login_required
+def edit_admindetail(request, user_id):
+     if not request.user.is_staff:
+        return redirect('admindisplay')  
+
+     admin_user_detail = get_object_or_404(UserDetail, user=request.user)
+
+     if request.method == 'POST':
+         form = UserDetailForm(request.POST,request.FILES, instance=admin_user_detail)
+         if form.is_valid():
+            form.save()
+            return redirect('admindisplay')  
+     else:
+         form = UserDetailForm(instance=admin_user_detail)
+
+     return render(request, 'edit_admindetail.html', {'form': form})
+
+
+
+
+def admin_edititem(request, item_id):
+    item = get_object_or_404(Task, id=item_id)
+    if not request.user.is_superuser:
+        return redirect('admindisplay')
+
+    if request.method == 'POST':
+        form = AdminTaskForm(request.POST,request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('admindisplay')  # Redirect to admin display view after editing item
+    else:
+        form = AdminTaskForm(instance=item)
+    
+    return render(request, 'admin_edititem.html', {'form': form, 'operation': 'Edit'})    
+
+
+def admin_viewitem(request, item_id):
+    if not request.user.is_superuser:
+        return redirect('admindisplay')
+
+    item = get_object_or_404(Task, id=item_id)
+
+    return render(request, 'admin_viewitem.html', {'item': item})
+
+
+
+def admin_approved(request):
+     items = Task.objects.filter(approved='Approved')
+     return render(request, 'admin_approved.html', {'items':items})
+
+
+def admin_rejected(request):
+     items = Task.objects.filter(approved='Rejected')
+     return render(request, 'admin_rejected.html', {'items':items})

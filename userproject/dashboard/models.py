@@ -33,6 +33,7 @@ class Task(models.Model):
     image=models.ImageField(upload_to="images/")
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
+    admin_comment = models.TextField(blank=True,null=True)
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
