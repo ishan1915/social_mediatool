@@ -22,6 +22,8 @@ urlpatterns = [
     path('displayprofile/',views.profile_view,name='displayprofile'),
     path('editprofile/<int:user_id>/',views.profile_edit,name='editprofile'),
     path('additem/', views.item_add, name='additem'),
+    path('viewtask/<int:item_id>/',views.item_view,name='viewtask'),
+
     path('edititem/<int:item_id>/',views.item_edit,name='edititem'),
     path('deleteitem/<int:item_id>/',views.item_delete,name='deleteitem'),
     path('approved_task/',views.approved_task,name='approved_task'),

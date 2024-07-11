@@ -11,5 +11,8 @@ class MemberAdmin2(admin.ModelAdmin):
     list_display = ("user","name","price","description")
 admin.site.register(Item,MemberAdmin2)
 
-admin.site.register(Task)
+
+class MemberAdmin3(admin.ModelAdmin):
+    list_display = ("user","datetime","title")
+admin.site.register(Task,MemberAdmin3)
 

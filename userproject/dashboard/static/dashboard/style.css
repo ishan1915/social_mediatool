@@ -1,7 +1,7 @@
 
 body{
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0; /* Example background color */
+      
       margin: 0; /* Reset default margin */
 	  padding-top:1px;
       padding: ; /* Reset default padding */
@@ -30,7 +30,7 @@ body{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #111;
 }
 
 .header li {
@@ -168,13 +168,17 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 		
 		
 .footer {
+	
+	margin-top:400px;
 	display:flex;
       background-color: black;
       color: white;
       padding: 10px;
       width: 100%;
-      clear: both; /* Ensure footer clears floated elements */
-      text-align: center; /* Center align footer content */
+      clear: both; 
+      text-align: center; 
+	  flex-direction:row;
+	  flex-wrap;nowrap;
     }
 
 .foot1, .foot2, .foot3 {

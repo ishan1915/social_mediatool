@@ -82,6 +82,7 @@
    <th>Title</th>
    <th>Status</th>
    <th>Edit</th>
+   <th>View</th>
    <th>Delete</th>
    </tr>
    {%for item in items%}
@@ -90,6 +91,7 @@
    <td>{{item.title}}</td>
    <td>{{item.approved}}</td>
    <td><a href="{% url 'edititem' item.id %}">Edit Item</a></td>
+   <td><a href="{% url 'viewtask' item.id %}">View Item</a></td>
    <td><a href="{% url 'deleteitem' item.id %}">Delete Item</a></td>
    </tr>
    {%endfor%}

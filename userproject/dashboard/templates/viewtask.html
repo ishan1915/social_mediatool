@@ -1,4 +1,4 @@
-<!-- admin_view_item.html -->
+
 
 {% load static %}
 <html>
@@ -26,8 +26,10 @@
 {% endif %}
 
 <p>Approved Status: {{ item.approved }}</p>
+
+<p>Any Comment/Changes: {{ item.comment }}</p>
+
    
-<p>Comment/Changes Any: {{ item.comment }}</p>
 
 {%endblock %}
 

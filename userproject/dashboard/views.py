@@ -3,6 +3,7 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden
@@ -103,6 +104,12 @@ def item_edit(request, item_id):
         form = TaskForm(instance=item)
     
     return render(request, 'additem.html', {'form': form, 'operation': 'Edit'})
+
+
+
+def item_view(request,item_id):
+    item = get_object_or_404(Task, id=item_id, user=request.user)
+    return render(request,'viewtask.html',{'item':item})
 
 @login_required
 def item_delete(request, item_id):
